@@ -2,8 +2,8 @@
 # StudentIds:   10729585 , 10447822 & 10732519
 # Group:        20
 # File:         Naivebayes.py
-# Date:         09-04-2016
 #
+# In this file the Naive Bayes is implemented.
 
 import csv
 import array
