@@ -1,7 +1,7 @@
-#
 # Names:        Kwan Win Chung, Matthijs Thoolen & Younes Ouazref
 # StudentIds:   10729585 , 10447822 & 10732519
 # Group:        20
+# File:         Naivebayes.py
 # Date:         09-04-2016
 #
 
@@ -9,6 +9,15 @@ import csv
 import array
 import numpy as np
 from matplotlib import pyplot as plt
+
+# Global arrays used for plotting.
+male_weight_array = []
+male_height_array = []
+male_size_array = []
+
+female_weight_array = []
+female_height_array = []
+female_size_array = []
 
 
 def gauss_classifier(mu, sigma, bins):
@@ -67,6 +76,15 @@ def calc_sex(info, weight, height, shoe_size):
     female_weight_prob = gauss_classifier(info['F'][0]['mean'], info['F'][0]['stdev'], weight)
     female_height_prob = gauss_classifier(info['F'][1]['mean'], info['F'][1]['stdev'], height)
     female_size_prob = gauss_classifier(info['F'][2]['mean'], info['F'][2]['stdev'], shoe_size)
+
+    # Save the probabilities in a global array.
+    male_weight_array.append(male_weight_prob)
+    male_height_array.append(male_height_prob)
+    male_size_array.append(male_size_prob)
+
+    female_weight_array.append(female_weight_prob)
+    female_height_array.append(female_height_prob)
+    female_size_array.append(female_size_prob)
 
     # Compute the probability
     prob_m = float(male_prob) * float(male_weight_prob) * float(male_height_prob) * float(male_size_prob)
@@ -154,8 +172,36 @@ def user_input(data):
         print "Are you a male?"
     else: 
         print "Are you sure your input is correct?" 
-        
-        
+
+
+# This function plots the Probability density functions of the male and female
+# for their weight, height and shoe size.
+def plot():
+
+    # Steps of 1/61 from 0 to 1.
+    x = np.arange(0, 1, 1/61.0)
+
+    # Plot the 3 figures.
+
+    plt.hist(male_weight_array, 61, normed=True, color='blue')
+    plt.hist(female_weight_array, 61, normed=True, color='red')
+    plt.title("Probability density function of the weight")
+    plt.legend(["male","female"])
+    plt.show()
+
+    plt.hist(male_height_array, 61, normed=True, color='blue')
+    plt.hist(female_height_array, 61, normed=True, color='red')
+    plt.title("Probability density function of the height")
+    plt.legend(["male","female"])
+    plt.show()
+
+    plt.hist(male_size_array, 61, normed=True, color='blue')
+    plt.hist(female_size_array, 61, normed=True, color='red')
+    plt.title("Probability density function of the shoe size")
+    plt.legend(["male","female"])
+    plt.show()
+
+
 def main():
     # Load the file into an array
     data = np.genfromtxt('biometrie2014.csv', delimiter=',', skip_header=5, dtype=None)
@@ -168,6 +214,7 @@ def main():
             break 
         elif(user_option == 'N'):
             test_classifier(data)
+            plot()
             break
         else:
             print "Wrong input, try again"
