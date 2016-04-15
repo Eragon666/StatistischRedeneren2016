@@ -1,7 +1,7 @@
-# Names:			Kwan Win Chung, Matthijs Thoolen & Younes Ouazref
-# Studentnumbers:	10729585, 10447822 & 10732519
-# Group: 20
-# File: SR_3.py
+# Names:            Kwan Win Chung, Matthijs Thoolen & Younes Ouazref
+# Studentnumbers:   10729585, 10447822 & 10732519
+# Group:            20
+# File:             SR_3.py
 # 
 # Comments: In deze file staat de derde opdracht van week 2 van 
 # Statistisch Redeneren.
@@ -28,7 +28,7 @@ cdf = stats.norm.cdf(x)
 histogram = stats.norm.rvs(loc=0, scale=1, size=1000)
 
 # De titel van het plaatje.
-plt.title("Opdrqacht 3")
+plt.title("Opdracht 3")
 # Print het histogram
 plt.hist(histogram, 30, normed=True)
 # plot de pdf en cdf lijnen.
