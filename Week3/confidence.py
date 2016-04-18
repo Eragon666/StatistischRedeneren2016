@@ -46,14 +46,14 @@ def betrouwbaarheids(gemiddelde_populatie):
 	steekproef = randomPick()
 	# Bereken het gemiddele en standaarddeviatie.
 	mu = np.mean(steekproef)
-	var = np.std(steekproef)
+	sig = np.std(steekproef)
 
 	# De waarde voor alpha staat op deze pagina. Het verschilt per percentage.
 	# https://en.wikipedia.org/wiki/Confidence_interval#Basic_Steps
 	alpha = 1.96
 
-	linker_grens = (mu - alpha * (var / np.sqrt(n)))
-	rechter_grens = (mu + alpha * (var / np.sqrt(n)))
+	linker_grens = (mu - alpha * (sig / np.sqrt(n)))
+	rechter_grens = (mu + alpha * (sig / np.sqrt(n)))
 
 	print "Linkergrens = " + str(linker_grens) + " en de rechtergrens = " + str(rechter_grens)
 	print "gemiddelde van de populatie (mu) = " + str(gemiddelde_populatie)
