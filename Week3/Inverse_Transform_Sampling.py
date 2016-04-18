@@ -1,3 +1,10 @@
+# Names:        Kwan Win Chung, Matthijs Thoolen & Younes Ouazref
+# StudentIds:   10729585 , 10447822 & 10732519
+# Group:        20
+# File:         Inverse_Transform_Sampling.py
+#
+
+
 import numpy as np
 import math
 from matplotlib import pyplot as plt

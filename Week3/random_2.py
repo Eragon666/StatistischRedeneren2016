@@ -3,15 +3,17 @@
 # Group:        20
 # File:         random_2.py
 #
-# In this file the subassignments of assignment 2 is implemented.
+# In deze file zijn de subassignments van opdracht 2 geimplementeerd.
 
 
 import numpy as np
 from matplotlib import pyplot as plt
 
 
+# De IBM methode
 def IBM(a, c, m, x_old):
 	return (a * x_old + c) % m
+
 
 # De IBM afleiding kan het volgende 'random' getal berekenen.
 # parameters: x = k+1 en y = k
@@ -20,8 +22,7 @@ def IBM_afleiding(x, y):
 	return 6*x - 9*y	
 
 
-# Assignment 2.1
-def assignment1():
+def assignment2_1():
 
 	x = np.random.uniform(0, 1, 500)
 	y = np.random.uniform(0, 1, 500)
@@ -31,9 +32,10 @@ def assignment1():
 	    
 	plt.show()
 
-	# Assignemnt 2.2
-def assignment2():
 
+def assignment2_2():
+
+	# de parameters
 	a = 65539
 	c = 0
 	m = 2**31
@@ -48,42 +50,47 @@ def assignment2():
 	x = []
 	y = []
 
+	# De eerste random getal wordt berekend voor beide seeds.
 	print "Seed1 is: " + str(seed1)
 	k1 = IBM(a, c, m, seed1)
 
-	print "See2 is: " + str(seed2)
+	print "Seed2 is: " + str(seed2)
 	k2 = IBM(a, c, m, seed2)
 
+	# Vervolgend worden er 500 random getallen gegenereerd.
 	for i in range(500):
 		k1 = IBM(a, c, m, k1)
-		# print k1 / float(m)
 		x.append(k1 / float(m))
 
 	for i in range(500):
 		k2 = IBM(a, c, m, k2)
-		# print k2 / float(m)
 		y.append(k2 / float(m))
 
-
+	# De getallen worden geplot als x en y coordinaten..
 	plt.scatter(x, y, color='red')
 	plt.title("IBM method : Random points between 0 and 1")
 	    
 	plt.show()
 
 
+# In deze opdracht wordt bewezen dat je een 'random' getal van de IBM methode
+# kan raden als je de twee vorige getallen weet.
+def assignment2_3():
 
-def assignment3():
-
+	# de parameters
 	a = 65539
 	c = 0
 	m = 2**31
 
+	# Een willekeurige seed.
 	seed = 1
-
+	
+	# De eerste 3 randomgetallen die zijn berekend.
 	k1 = IBM(a, c, m, seed)
 	k2 = IBM(a, c, m, k1)
 	k3 = IBM(a, c, m, k2)
-
+	# De berekening die het juiste 'random' getal geeft wanneer het de twee
+	# vorige getallen gebruikt.
 	afl = IBM_afleiding(k2, k1)
 
 	print "We hebben met de IBM methode een random getal berekend: " + str(k3)
@@ -92,9 +99,8 @@ def assignment3():
 vorige \'random\' getallen dan krijgen we hetzelfde getal: """ + str(afl)
 
 
-
 if __name__ == '__main__':
 	
-	# assignment1()
-	# assignment2()
-	assignment3()
+	assignment2_1()
+	assignment2_2()
+	assignment2_3()
