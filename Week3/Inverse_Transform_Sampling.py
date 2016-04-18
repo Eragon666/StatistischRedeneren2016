@@ -17,6 +17,6 @@ lambda_schatting = 1/mean_x
 print 'Estimated lambda', lambda_schatting
 
 # Plot all the random numbers in a histogram.
-bins = 15
+bins = 8
 plt.hist(random_list, bins, range=[0, bins], normed=True)
 plt.show()
