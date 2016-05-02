@@ -31,20 +31,21 @@ def calcMu(mu, Sigma):
     X = randn(4, 1000)
     Y = dot(A,X) + tile(mu, 1000)
 
-    # Collect the mean values in a data matrix
+    # Calculate the mean values and put it in a data matrix
     for x in range (0, 1000):
-	    Ybar = mean(Y, 1)
+	    Mean = mean(Y, 1)
 	    collect[x] = Ybar
 
     collect = collect.reshape(4, 1000)
     Y = collect
-    Ybar = mean(Y, 1)
+    Mean = mean(Y, 1)
     # subtract mean from each column
     Yzm = Y - tile(Ybar[:, newaxis], 1000)
     # Estimate covariance matrix
-    S = dot(Yzm, transpose(Yzm)) / 999
-    print("Estimated mean:", Ybar)
-    print("Estimated Covariance matrix:", S)
+    CoMa = dot(Yzm, transpose(Yzm)) / 999
+    
+    print("Mean (Estimated):\n", Mean)
+    print("Covariance matrix (Estimated):\n", CoMa)
     
 def main():
 
