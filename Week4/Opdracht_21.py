@@ -24,10 +24,9 @@ def calculations():
 
 def plotting(X, Y):
 	f, ax = plt.subplots(4,4)
-	for i in range(len(ax)):
-		for j in range(len(ax)):
+	for i in xrange(len(ax)):
+		for j in xrange(len(ax)):
 			ax[i,j].scatter(Y[i],Y[j])
-		print ax[i,j]
 	plt.show()
 
 def main():
