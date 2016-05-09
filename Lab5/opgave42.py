@@ -46,7 +46,7 @@ class NNb:
         elif (score[1] > score[2]):
             return 2.0
 
-        # If there ae points with the same value, assign the class of the nearest neighbour.
+        # If there are points with the same value, assign the class of the nearest neighbour.
         elif(score[0] == score[1] and score[0] == score[2]):       
             return self.c[minindex]
         else:
